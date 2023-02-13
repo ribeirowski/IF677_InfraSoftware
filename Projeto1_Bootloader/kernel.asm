@@ -15,6 +15,7 @@ data:
 	inst2_BB db "Pressione A para ESQUERDA" ;25 caracteres 
 	inst_BB db "Pressione D para DIREITA" ;24 caracteres
 	back db "Pressione ESC para voltar" ;25 caracteres
+	exit db "Pressione ESC para sair" ;23 caracteres
 	start db "Pressione ENTER para dar play" ;29 caracteres
 	creditos db "Pressione C para ver os creditos" ;32 caracteres
 	creds db "CREDITOS";8 caracteres
@@ -60,6 +61,11 @@ main:
 		mov dl, 4
 		mov cx, 32
 		mov bp, creditos
+		int 10h
+		mov dh, 23
+		mov dl, 8
+		mov cx, 23
+		mov bp, exit
 		int 10h
 		Print_Asteroids: ;Printar imagem no retangulo
 			mov si, Asteroids_img
@@ -128,8 +134,7 @@ main:
 	        mov cx, 25
 		mov bp, back
 		int 10h
-		jmp waitA2
-		
+		jmp waitA2	
 	Inst_BrickBreaker:
 		call video
 		mov ah, 0x13 ;Printar string
@@ -161,8 +166,7 @@ main:
 	        mov cx, 25
 		mov bp, back
 		int 10h
-		jmp waitB2
-		
+		jmp waitB2	
 	Creditos:
 		call video
 		mov ah, 0x13 ;Printar string
@@ -194,8 +198,14 @@ main:
 	        mov cx, 25
 		mov bp, back
 		int 10h
-		jmp waitB2
-			
+		jmp waitCredits
+	Asteroids:
+		call video
+		jmp end
+	BrickBreaker:
+		call video
+		jmp end
+		
 	waitA1:
 		mov ah, 0
 		int 16h
@@ -205,14 +215,16 @@ main:
 		je Inst_Asteroids
 		cmp al, 99;letra c
 		je Creditos
+		cmp al, 27 ;esc
+		je end
 		jmp waitA1
     	waitA2:
     		mov ah, 0
 		int 16h
 		cmp al, 27 ;esc
 		je Inicio
-		;cmp al, 13 ;enter
-		;je Asteroids ;Início do jogo
+		cmp al, 13 ;enter
+		je Asteroids ;Início do jogo
 		jmp waitA2
 	waitB1:
 		mov ah, 0
@@ -221,14 +233,23 @@ main:
 		je Print_Asteroids
 		cmp al, 13 ;enter
 		je Inst_BrickBreaker
+		cmp al, 27 ;esc
+		je end
 		jmp waitB1
 	waitB2:
     		mov ah, 0
 		int 16h
 		cmp al, 27 ;esc
 		je Inicio
-		;cmp al, 13 ;enter
-		;je BrickBreaker ;Início do jogo
+		cmp al, 13 ;enter
+		je BrickBreaker ;Início do jogo
 		jmp waitB2
-			
-jmp $
+	waitCredits:
+		mov ah, 0
+		int 16h
+		cmp al, 27 ;esc
+		je Inicio
+		jmp waitCredits
+	end:
+		call video
+		jmp $

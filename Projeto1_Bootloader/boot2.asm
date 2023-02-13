@@ -4,7 +4,8 @@ jmp main
 data:
 	msg1 db "Rodaaaaaaando...", 0
 	msg2 db "Weeeeeeeeeeee...", 0
-	msg3 db "Paro de brincadeira, VAMO INICIAR!!", 0
+	msg3 db "Paro de brincadeira...", 0
+	msg4 db "VAMO INICIAR!!", 0
 main:
 	xor ax, ax
 	mov es, ax
@@ -20,6 +21,16 @@ main:
 	call string
 	mov si, msg3
 	call string
+	mov ah, 86h
+	mov cx, 1
+	mov dx, 0
+	int 15h
+	mov si, msg4
+	call string
+	mov ah, 86h
+	mov cx, 1
+	mov dx, 0
+	int 15h
 	
 reset:
 	mov ah, 00h ;reseta sistema de disco
@@ -39,6 +50,7 @@ load:
 	jmp 0x7e00 ;pula pro kernel
 string:
 	loop:
+		call delay
 		lodsb ;coloca de si em al
 		cmp al, 0
 		je end
@@ -53,6 +65,12 @@ string:
 print:
 	mov ah, 0xe
 	int 10h
+	ret
+delay:
+	mov ah, 86h
+	mov cx, 0
+	mov dx, 17000
+	int 15h
 	ret
 	
 times 510-($-$$) db 0 ;512 bytes
