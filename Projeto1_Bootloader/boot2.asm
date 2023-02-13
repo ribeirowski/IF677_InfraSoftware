@@ -15,6 +15,10 @@ main:
 	mov ax, 0x7e0 ;coloca o endereço do kernel / 16 em 'es'
 	mov es, ax ; ax * 16
 	
+	mov ah, 0
+	mov al, 12h
+	int 10h
+	
 	mov si, msg1
 	call string
 	mov si, msg2
@@ -22,13 +26,13 @@ main:
 	mov si, msg3
 	call string
 	mov ah, 86h
-	mov cx, 1
+	mov cx, 10
 	mov dx, 0
 	int 15h
 	mov si, msg4
 	call string
 	mov ah, 86h
-	mov cx, 1
+	mov cx, 10
 	mov dx, 0
 	int 15h
 	
@@ -39,6 +43,7 @@ reset:
 	jc reset    ;se der errado tenta denovo
 
 load:
+	xor bx, bx
 	mov ah, 02h ;lê um setor do disco
 	mov al, 60   ;quantidade de setores ocupados pelo kernel
 	mov ch, 0   ;track 0
@@ -59,19 +64,22 @@ string:
 	end:
 		mov al, 10
 		call print
+		call print
 		mov al, 13
 		call print
 		ret
 print:
 	mov ah, 0xe
+	mov bl, 2
 	int 10h
 	ret
 delay:
 	mov ah, 86h
-	mov cx, 0
-	mov dx, 17000
+	mov cx, 1
+	mov dx, 0
 	int 15h
 	ret
 	
 times 510-($-$$) db 0 ;512 bytes
 dw 0xaa55	
+
