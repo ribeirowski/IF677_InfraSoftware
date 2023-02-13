@@ -22,6 +22,10 @@ data:
 	enio db "Enio <ehnr>";11 caracteres
 	matheus db "Matheus <mams4>";15 caracteres
 	thiago db "Thiago <tjgc>";13 carcacteres
+	tiro_nave db 0, 4, 4, 4, 4
+	asteroide_quebrado db 
+	asteroide db 
+	nave db 
 video:
 	mov ah, 0
 	mov al, 0x13
@@ -29,6 +33,9 @@ video:
 	ret
 main:
 	xor ax, ax
+	mov bx, ax
+	mov cx, ax
+	mov dx, ax
 	mov ds, ax
 	mov es, ax
 	mov bp, ax
