@@ -262,9 +262,9 @@ main:
 			mov ah, 0
 			int 16h
 			cmp al, 119 ;caractere w
-			je aumenta_bx
+			je sobe_nave
 			cmp al, 115 ;caractere s
-			je diminui_bx
+			je desce_nave
 			jmp pos_nave
 			
 	BrickBreaker:
@@ -370,12 +370,12 @@ main:
 		fim_loop1:
 			jmp waitA3
 	;Moldura:
-	aumenta_bx:
-		inc bx
+	sobe_nave:
+		dec bx
 		call Nave
 		jmp pos_nave
-	diminui_bx:
-		dec bx
+	desce_nave:
+                inc bx
 		call Nave
 		jmp pos_nave
 	end:
