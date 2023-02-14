@@ -256,7 +256,17 @@ main:
 		call video
 		call printScore
 		call Score
-		call Nave
+		mov bx, 85
+		pos_nave:
+			call Nave
+			mov ah, 0
+			int 16h
+			cmp al, 119 ;caractere w
+			je aumenta_bx
+			cmp al, 115 ;caractere s
+			je diminui_bx
+			jmp pos_nave
+			
 	BrickBreaker:
 		call video
 		call printScore
@@ -340,13 +350,14 @@ main:
 		ret
 	Nave:
 		mov si, nave
-		mov dx, 85
+		mov dx, bx
+		add bx, 17
 		loop1:
-			cmp dx, 102;17 linhas
+			cmp dx, bx;17 linhas
 			je fim_loop1
-			mov cx, 60
+			mov cx, 30
 			loop2:
-				cmp cx, 75;15 colunas
+				cmp cx, 45;15 colunas
 				je fim_loop2
 				lodsb ; al = 0/
 				mov ah, 0xc
@@ -358,7 +369,15 @@ main:
 				jmp loop1
 		fim_loop1:
 			jmp waitA3
-	Moldura:
+	;Moldura:
+	aumenta_bx:
+		inc bx
+		call Nave
+		jmp pos_nave
+	diminui_bx:
+		dec bx
+		call Nave
+		jmp pos_nave
 	end:
 		call video
 		jmp $
