@@ -2,10 +2,11 @@ org 0x500
 jmp main
 
 data:
-	msg1 db "Rodaaaaaaando...", 0
-	msg2 db "Weeeeeeeeeeee...", 0
-	msg3 db "Paro de brincadeira...", 0
+	msg1 db "Zerando Fisica 2", 0
+	msg2 db "Jogando o CUSCUZ fora", 0
+	msg3 db "Paro a brincadeira, ", 0
 	msg4 db "VAMO INICIAR!!", 0
+	dots db "...", 0
 main:
 	xor ax, ax
 	mov es, ax
@@ -16,13 +17,15 @@ main:
 	mov es, ax ; ax * 16
 	
 	mov ah, 0
-	mov al, 12h
+	mov al, 0xd
 	int 10h
 	
 	mov si, msg1
 	call string
+	call printdots
 	mov si, msg2
 	call string
+	call printdots
 	mov si, msg3
 	call string
 	mov ah, 86h
@@ -62,6 +65,17 @@ string:
 		call print
 		jmp loop
 	end:
+		ret
+printdots:
+	mov si, dots
+	loop1:
+		call delay2
+		lodsb ;coloca de si em al
+		cmp al, 0
+		je end1
+		call print
+		jmp loop1
+	end1:
 		mov al, 10
 		call print
 		call print
@@ -75,7 +89,13 @@ print:
 	ret
 delay:
 	mov ah, 86h
-	mov cx, 1
+	mov cx, 0
+	mov dx, 17000
+	int 15h
+	ret
+delay2:
+	mov ah, 86h
+	mov cx, 5
 	mov dx, 0
 	int 15h
 	ret
