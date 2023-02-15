@@ -36,6 +36,7 @@ data:
 	ast_x times 11 dw 0
 	ast_y times 11 dw 0
 	nave_y dw 0
+	nave_x dw 0
 video:
 	mov ah, 0
 	mov al, 0x13
@@ -49,6 +50,7 @@ main:
 	mov ds, ax
 	mov es, ax
 	mov bp, ax
+	push ax
 	Inicio:
 		call video
 		mov ah, 0x13 ;Printar string
@@ -266,6 +268,9 @@ main:
 		mov ax, 85
 		mov di, nave_y
 		stosw
+		mov ax, 35
+		mov di, nave_x
+		stosw
 		pos_nave:
 			call Nave
 			mov ah, 0
@@ -314,7 +319,7 @@ main:
 				inc cx
 				jmp loop_tiros
 			fim_loop_tiros:
-				add cx, 3
+				sub cx, 4
 				mov ax, cx
 				stosw
 				inc di
@@ -477,13 +482,13 @@ main:
 			lodsw
 			add ax, 8
 			stosw
-			mov cx, 0
 			mov di, tiros_x
 			mov si, tiros_x
 			mov bx, 0
 			ret
 		store_nextx:
-			mov ax, cx
+			mov si, nave_x
+			lodsw
 			inc ax
 			stosw
 			mov bx, 0
