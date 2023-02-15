@@ -31,11 +31,11 @@ data:
 	objetivoAsteroids db "Destrua todos os asteroides!";28 caracteres
 	objetivoBrickBreaker db "Quebre todos os tijolos!";24 caracteres
 	score db "SCORE:";6 caracteres
-	tiros_x times 10 db 0 
-	tiros_y times 10 db 0
-	ast_x times 10 db 0
-	ast_y times 10 db 0
-	nave_y db 0
+	tiros_x times 10 dw 0 
+	tiros_y times 10 dw 0
+	ast_x times 10 dw 0
+	ast_y times 10 dw 0
+	nave_y dw 0
 video:
 	mov ah, 0
 	mov al, 0x13
@@ -259,7 +259,10 @@ main:
 		call video
 		call printScore
 		call Score
-		mov bx, 85
+		xor bx, bx
+		mov ax, 85
+		mov di, nave_y
+		stosw
 		pos_nave:
 			call Nave
 			mov ah, 0
@@ -270,6 +273,7 @@ main:
 			je desce_nave
 			cmp al, 32 ; espaço
 			je tiro
+		tiros:
 			jmp pos_nave
 	BrickBreaker:
 		call video
@@ -343,18 +347,17 @@ main:
 		int 10h
 		ret
 	Score:
-		mov ah, 0x13 ;Printar string
-		mov al, 1 ;tipo de escrita
-		mov bl, 2 ;cor
-		mov dh, 22 ;linha
-		mov dl, 23 ;coluna
-		mov cx, 1;numero de caracteres
-		mov bp, score0
+		mov ah, 0xe
+		mov al, 48
+		mov cx, 0
 		int 10h
 		ret
 	Nave:
+		mov si, nave_y
+		lodsw
+		mov dx, ax
 		mov si, nave
-		mov dx, bx
+		mov bx, dx
 		add bx, 17
 		loop1:
 			cmp dx, bx;17 linhas
@@ -373,37 +376,74 @@ main:
 				jmp loop1
 		fim_loop1:
 			sub bx, 17
+			mov di, nave_y
+			mov ax, bx
+			stosb
 			ret
 	sobe_nave:
 		cmp bx, 1
 		je pos_nave
 		dec bx
 		dec bx
-		jmp pos_nave
+		mov ax, bx
+		mov di, nave_y
+		stosb
+		jmp tiros
 	desce_nave:
 		cmp bx, 155
 		je pos_nave
                 inc bx
                 inc bx
-		jmp pos_nave
-	tiro:
-		mov si, tiro_nave
-		mov dx, bx
-		add dx, 8
-		add cx, 10
-		mov bp, cx
-		sub cx, 9
-		loop_tiro:
-			cmp cx, bp ;9 colunas
-			je fim_loop_tiro
-			lodsb ; al = 0/
-			mov ah, 0xc
-			int 10h
+                mov ax, bx
+		mov di, nave_y
+		stosb
+		jmp tiros
+	tiro: ;Encontrar o espaço com 0 na string e adicionar as coordenadas x e y nos respectivos vetores
+		xor bx, bx ;contador
+		push cx
+		mov cx, bx ;contador
+		mov si, tiros_x
+		mov di, tiros_x
+		next_shot:
+			cmp bx, 10
+			je pos_nave ;Asteroides no futuro
+			lodsw
+			cmp ax, 0
+			je findx
+			inc bx
+			jmp next_shot
+		findx:
+			cmp bx, cx
+			je endx
 			inc cx
-			jmp loop_tiro
-		fim_loop_tiro:
+			inc di
+			jmp findx
+		endx:
+			call store_nextx
+		findy:
+			cmp bx, cx
+			je endy
+			inc cx
+			inc di
+			jmp findy
+		endy:
+			call store_nexty
+			jmp tiros
+		store_nextx:
+			mov si, nave_y
+			lodsb
+			add ax, 8
+			stosw
+			mov cx, 0
+			mov di, tiros_y
+			ret
+		store_nexty:
+			pop cx
+			inc cx
+			mov ax, cx
+			stosw
 			dec cx
-			jmp pos_nave
+			ret
 			
 	end:
 		call video
