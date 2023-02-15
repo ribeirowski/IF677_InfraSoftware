@@ -31,10 +31,10 @@ data:
 	objetivoAsteroids db "Destrua todos os asteroides!";28 caracteres
 	objetivoBrickBreaker db "Quebre todos os tijolos!";24 caracteres
 	score db "SCORE:";6 caracteres
-	tiros_x times 10 dw 0 
-	tiros_y times 10 dw 0
-	ast_x times 10 dw 0
-	ast_y times 10 dw 0
+	tiros_x times 11 dw 0 
+	tiros_y times 11 dw 0
+	ast_x times 11 dw 0
+	ast_y times 11 dw 0
 	nave_y dw 0
 video:
 	mov ah, 0
@@ -120,6 +120,7 @@ main:
 				fim_lp2R2:
 					inc dx
 					jmp loop1R2
+
     Inst_Asteroids:
 		call video
 		mov ah, 0x13 ;Printar string
@@ -170,7 +171,8 @@ main:
 	    mov cx, 25
 		mov bp, back
 		int 10h
-		jmp waitA2	
+		jmp waitA2
+
 	Inst_BrickBreaker:
 		call video
 		mov ah, 0x13 ;Printar string
@@ -233,9 +235,9 @@ main:
 		mov cx, 8 ;numero de caracteres
 		mov bp, creds
 		int 10h
-	    	mov dh, 9
-	    	mov dl, 15
-	        mov cx, 11
+		mov dh, 9
+		mov dl, 15
+		mov cx, 11
 		mov bp, enio
 		int 10h
 		mov dh, 11
@@ -250,11 +252,12 @@ main:
 		int 10h
 		mov bl, 2
 		mov dh, 18
-	    	mov dl, 8
-	        mov cx, 25
+		mov dl, 8
+		mov cx, 25
 		mov bp, back
 		int 10h
 		jmp waitCredits
+
 	Asteroids:
 		call video
 		call printScore
@@ -274,6 +277,50 @@ main:
 			cmp al, 32 ; espaço
 			je tiro
 		tiros:
+			mov di, tiros_x
+			mov si, tiros_x
+			push si
+			mov si, tiros_y
+			push si
+		print:
+			pop si
+			lodsw
+			cmp ax, 0
+			je end_print
+			mov dx, ax
+			inc si
+			push si
+			pop bx
+			pop si
+			push bx
+			lodsw
+			mov cx, ax
+			inc si
+			pop bx
+			push si
+			push bx
+			xor bx, bx
+			add ax, 7
+			push ax
+			mov si, tiro_nave
+			loop_tiros:
+				pop ax
+				cmp cx, ax
+				je fim_loop_tiros
+				push ax
+				lodsb ; al = 0
+				mov ah, 0xc
+				int 10h
+				inc cx
+				jmp loop_tiros
+			fim_loop_tiros:
+				add cx, 3
+				mov ax, cx
+				stosw
+				inc di
+				jmp print
+			
+		end_print:	
 			jmp pos_nave
 	BrickBreaker:
 		call video
@@ -400,49 +447,46 @@ main:
 		jmp tiros
 	tiro: ;Encontrar o espaço com 0 na string e adicionar as coordenadas x e y nos respectivos vetores
 		xor bx, bx ;contador
-		push cx
-		mov cx, bx ;contador
-		mov si, tiros_x
-		mov di, tiros_x
-		next_shot:
+		mov si, tiros_y
+		mov di, tiros_y
+		next_shot_y:
 			cmp bx, 10
 			je pos_nave ;Asteroides no futuro
 			lodsw
 			cmp ax, 0
-			je findx
-			inc bx
-			jmp next_shot
-		findx:
-			cmp bx, cx
-			je endx
-			inc cx
+			je endy
 			inc di
-			jmp findx
+			inc bx
+			jmp next_shot_y
+		endy: ;guarda a linha do tiro
+			call store_nexty
+		next_shot_x:
+			cmp bx, 10
+			je pos_nave ;Asteroides no futuro
+			lodsw
+			cmp ax, 0
+			je endx
+			inc di
+			inc bx
+			jmp next_shot_x
 		endx:
 			call store_nextx
-		findy:
-			cmp bx, cx
-			je endy
-			inc cx
-			inc di
-			jmp findy
-		endy:
-			call store_nexty
 			jmp tiros
-		store_nextx:
+		store_nexty:
 			mov si, nave_y
-			lodsb
+			lodsw
 			add ax, 8
 			stosw
 			mov cx, 0
-			mov di, tiros_y
+			mov di, tiros_x
+			mov si, tiros_x
+			mov bx, 0
 			ret
-		store_nexty:
-			pop cx
-			inc cx
+		store_nextx:
 			mov ax, cx
+			inc ax
 			stosw
-			dec cx
+			mov bx, 0
 			ret
 			
 	end:
