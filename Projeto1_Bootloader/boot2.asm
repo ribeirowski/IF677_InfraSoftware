@@ -2,7 +2,7 @@ org 0x500
 jmp main
 
 data:
-	msg1 db "Zerando Fisica 2", 0
+	msg1 db "Reprovando Logica", 0
 	msg2 db "Jogando o CUSCUZ fora", 0
 	msg3 db "Paro a brincadeira, ", 0
 	msg4 db "VAMO INICIAR!!", 0
