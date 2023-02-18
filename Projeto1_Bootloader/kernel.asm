@@ -294,15 +294,16 @@ Fuja: ;tela inicial do jogo Fuja:
 	call Score
 	call estudante
 	call draw_street
-	mov di, ruy_x
 	xor bx, bx
 	new_ruy:
+		mov di, ruy_x
 		call ruy
+		stosw
+		call vanish
 	walk:
 		mov di, ruy_x
 		mov si, ruy_x
 		call delay
-		xor bx, bx ;contador
 		jmp mov_ruy
 BrickBreaker: ;jogo BrickBreaker:
 	call video
@@ -417,31 +418,24 @@ ruy:
 			jmp loop1Ruy
 	fim_loop1Ruy:
 		mov ax, 290
-		stosw
 		ret
 mov_ruy:
-	push si
 	mov si, Ruy_img
 	mov dx, 123
 	loop1_mov_Ruy:
-		mov bx, si
-		pop si
-		push bx
-		lodsw 
+		push si
 		mov si, ruy_x
-		mov bx, si
+		lodsw 
 		pop si
-		push bx
-		xor bx, bx
 		mov cx, ax
-		sub cx, 2
+		sub cx, 5
 		push cx
 		cmp dx, 146 ;23 linhas
 		je fim_loop1_mov_Ruy
 		loop2mov_Ruy:
 			pop ax
 			push ax
-			add ax, 20 ;17 colunas
+			add ax, 20 ;20 colunas
 			cmp cx, ax
 			je fim_loop2mov_Ruy
 			lodsb ; al = 0/
@@ -455,15 +449,38 @@ mov_ruy:
 			jmp loop1_mov_Ruy
 	fim_loop1_mov_Ruy:
 		pop ax
-		pop si
-		pop bx
+		mov di, ruy_x
 		stosw
-		dec di
-		lodsw
 		cmp ax, 0
 		je new_ruy
+		cmp ax, 1
+		je new_ruy
+		cmp ax, 2
+		je new_ruy
+		cmp ax, 3
+		je new_ruy
+		cmp ax, 4
+		je new_ruy
 		jmp walk
-
+vanish:
+	mov dx, 123
+	loop1vanish:
+		cmp dx, 146 ;23 linhas
+		je fim_loop1vanish
+		mov cx, 0
+		loop2vanish:
+			cmp cx, 20;20 colunas
+			je fim_loop2vanish
+			mov al, 3
+			mov ah, 0xc
+			int 10h
+			inc cx
+			jmp loop2vanish	
+		fim_loop2vanish:
+			inc dx
+			jmp loop1vanish
+	fim_loop1vanish:
+		ret
 estudante:
 	mov si, Estudante_img
 	mov dx, 120
@@ -530,5 +547,5 @@ delay:
 	int 15h
 	ret
 end: ;fim do programa:
-		call video
-		jmp $
+	call video
+	jmp $
