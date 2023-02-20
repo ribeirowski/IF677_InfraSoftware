@@ -3,7 +3,7 @@ jmp main
 
 data: ;armazena os dados do programa:
 	;personagens:
-		Ruy_img db 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 15, 15, 15, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 15, 15, 15, 0, 0, 0, 0, 0, 0, 7, 12, 7, 7, 7, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 1, 12, 1, 15, 15, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 12, 15, 15, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 12, 12, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 12, 12, 12, 8, 8, 8, 8, 8, 12, 12, 0, 0, 0, 0, 0, 0, 12, 12, 12, 8, 8, 8, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 1, 1, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 0, 0, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 0, 0, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0
+		Ruy_img db 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 15, 15, 15, 0, 0, 0, 0, 0, 0, 0, 7, 12, 7, 7, 7, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12, 1, 15, 15, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 15, 15, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 12, 12, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 8, 8, 8, 8, 8, 12, 12, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 8, 8, 8, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 1, 1, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 0, 0, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 0, 0, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
 		Estudante_img db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 4, 4, 4, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 4, 4, 4, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 4, 4, 4, 12, 4, 4, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 15, 0, 12, 15, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 15, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 15, 15, 15, 15, 12, 0, 0, 0, 0, 1, 7, 1, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 12, 12, 9, 9, 9, 0, 0, 0, 0, 0, 1, 1, 1, 9, 9, 1, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 1, 1, 1, 9, 9, 1, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 1, 1, 1, 12, 12, 1, 9, 9, 9, 9, 12, 12, 12, 0, 0, 0, 1, 1, 1, 12, 12, 12, 12, 9, 9, 9, 12, 12, 12, 0, 0, 0, 1, 1, 1, 12, 12, 12, 12, 9, 9, 9, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0
 		Estudante_pulo_img db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 4, 4, 4, 12, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 15, 1, 12, 15, 1, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 15, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 12, 12, 12, 15, 15, 15, 15, 12, 0, 0, 0, 0, 0, 1, 7, 1, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 12, 12, 0, 0, 1, 1, 1, 1, 1, 1, 12, 12, 9, 9, 9, 0, 0, 12, 12, 0, 0, 12, 12, 12, 9, 9, 1, 9, 9, 9, 9, 9, 9, 12, 12, 12, 0, 0, 12, 12, 12, 9, 9, 1, 9, 9, 9, 9, 9, 9, 12, 12, 12, 0, 0, 12, 12, 1, 9, 9, 1, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 12, 12, 1, 1, 9, 1, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 1, 4, 4, 4, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 1, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 	;posters:
@@ -22,6 +22,8 @@ data: ;armazena os dados do programa:
 		start db "Pressione ENTER para dar play" ;29 caracteres
 		back db "Pressione ESC para voltar" ;25 caracteres
 		score db "SCORE:";6 caracteres
+		game_over db "GAME OVER" ;9 caracteres
+		retry db "Pressione ENTER para jogar novamente" ;36 caracteres
 	;textos_jogo_fuja:
 		wellcome_Fuja db "> Fuja do Ruy <" ;15 caracteres
 		objetivoFuja db "Nao deixe o Ruy te pegar!";25 caracteres
@@ -44,6 +46,15 @@ data: ;armazena os dados do programa:
 		estagio_pulo db 0 ;Estágio do pulo: 0 = não ta pulando, 1 = subindo, 2 = descendo
 		num_score dw 0 ;numero do score
 		speed_fuja dw 0 ;velocidade do jogo
+main: ;funcao principal do programa
+;zerar registradores
+	xor ax, ax
+	mov bx, ax
+	mov cx, ax
+	mov dx, ax
+	mov ds, ax
+	mov es, ax
+	mov bp, ax
 video: ;ativar modo grafico:
 	mov ah, 0
 	mov al, 0xd
@@ -55,17 +66,33 @@ video_cyan:
 	mov bl, 3 ;cor do fundo
 	int 10h
 	ret
-main: ;funcao principal do programa
-;zerar registradores
-	xor ax, ax
-	mov bx, ax
-	mov cx, ax
-	mov dx, ax
-	mov ds, ax
-	mov es, ax
-	mov bp, ax
-	push ax
-Inicio:
+Inst_jogos: ;Instruções comuns entre os jogos:
+	mov bl, 2
+	mov dh, 6
+	mov dl, 16
+	mov cx, 9
+	mov bp, objetivo
+	int 10h
+	mov bl, 2
+	mov dh, 12
+	mov dl, 15
+	mov cx, 11
+	mov bp, instrucoes
+	int 10h
+	mov bl, 2
+	mov dh, 20
+	mov dl, 6
+	mov cx, 29
+	mov bp, start
+	int 10h
+	mov bl, 2
+	mov dh, 22
+	mov dl, 8
+	mov cx, 25
+	mov bp, back
+	int 10h
+	ret
+Inicio: ;Menu geral
 	call video
 	mov ah, 0x13 ;Printar string
 	mov al, 1 ;tipo de escrita
@@ -137,14 +164,14 @@ Inicio:
 			fim_lp2R2:
 				inc dx
 				jmp loop1R2
-Inst_Fuja_play: ;tela de instrucoes do jogo Fuja:
+Inst_Fuja: ;tela de instrucoes do jogo Fuja:
 	call video
 	mov ah, 0x13 ;Printar string
 	mov al, 1 ;tipo de escrita
-	call Menu_jogos
+	call Inst_jogos
 	mov bl, 4 ;cor
 	mov dh, 2 ;linha
-	mov dl, 12 ;coluna
+	mov dl, 13 ;coluna
 	mov cx, 15 ;numero de caracteres
 	mov bp, wellcome_Fuja
 	int 10h
@@ -161,35 +188,11 @@ Inst_Fuja_play: ;tela de instrucoes do jogo Fuja:
 	mov bp, inst_Fuja
 	int 10h
 	jmp waitA2
-Inst_Fuja_pause: ;tela de instrucoes do jogo Fuja:
-	call video
-	mov ah, 0x13 ;Printar string
-	mov al, 1 ;tipo de escrita
-	call Menu_jogos
-	mov bl, 4 ;cor
-	mov dh, 2 ;linha
-	mov dl, 12 ;coluna
-	mov cx, 15 ;numero de caracteres
-	mov bp, wellcome_Fuja
-	int 10h
-	mov bl, 15
-	mov dh, 8
-	mov dl, 8
-	mov cx, 25
-	mov bp, objetivoFuja
-	int 10h
-	mov bl, 15
-	mov dh, 14
-	mov dl, 7
-	mov cx, 26
-	mov bp, inst_Fuja
-	int 10h
-	jmp waitA4
 Inst_BrickBreaker: ;tela de instrucoes do jogo BrickBreaker:
 	call video
 	mov ah, 0x13 ;Printar string
 	mov al, 1 ;tipo de escrita
-	call Menu_jogos
+	call Inst_jogos
 	mov bl, 4 ;cor
 	mov dh, 2 ;linha
 	mov dl, 12 ;coluna
@@ -214,32 +217,6 @@ Inst_BrickBreaker: ;tela de instrucoes do jogo BrickBreaker:
 	mov bp, inst_BB
 	int 10h
 	jmp waitB2	
-Menu_jogos: ;menu comum entre os jogos:
-	mov bl, 2
-	mov dh, 6
-	mov dl, 16
-	mov cx, 9
-	mov bp, objetivo
-	int 10h
-	mov bl, 2
-	mov dh, 12
-	mov dl, 15
-	mov cx, 11
-	mov bp, instrucoes
-	int 10h
-	mov bl, 2
-	mov dh, 20
-	mov dl, 6
-	mov cx, 29
-	mov bp, start
-	int 10h
-	mov bl, 2
-	mov dh, 22
-	mov dl, 8
-	mov cx, 25
-	mov bp, back
-	int 10h
-	ret
 Creditos: ;página de créditos:
 	call video
 	mov ah, 0x13 ;Printar string
@@ -272,7 +249,7 @@ Creditos: ;página de créditos:
 	mov bp, back
 	int 10h
 	jmp waitCredits
-Fuja_espera:
+Fuja_espera: ;tela inicial do jogo Fuja
 	call video
 	call video_cyan
 	call estudante
@@ -293,7 +270,7 @@ Fuja_espera:
 	mov bp, entrar
 	int 10h
 	jmp waitA3
-Fuja: ;tela inicial do jogo Fuja:
+Fuja: ;Inicia o jogo Fuja
 	call video
 	call video_cyan
 	call printScore
@@ -307,7 +284,7 @@ Fuja: ;tela inicial do jogo Fuja:
 	stosw
 	call Score
 	mov di, speed_fuja
-	mov ax, 20000
+	mov ax, 15000
 	stosw
 	xor bx, bx
 	new_ruy:
@@ -335,92 +312,7 @@ Fuja: ;tela inicial do jogo Fuja:
 		cmp al, 32
 		je sobe
 		jmp walk
-BrickBreaker: ;jogo BrickBreaker:
-	call video
-	call printScore
-	call Score
-	jmp waitB3
-waitA1: ;espera por uma tecla na tela inicial (Fuja):
-	mov ah, 0
-	int 16h
-	cmp al, 110 ;Letra n
-	je Print_BrickBreaker
-	cmp al, 13 ;enter
-	je Inst_Fuja_play
-	cmp al, 99;letra c
-	je Creditos
-	cmp al, 27 ;esc
-	je end
-	jmp waitA1
-waitA2: ;espera por uma tecla na tela de instrução do jogo Fuja:
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inicio
-	cmp al, 13 ;enter
-	je Fuja_espera ;Início do jogo
-	jmp waitA2
-waitA3: ;espera por uma tecla na tela do jogo Fuja (ESC => voltar para o menu de instruções do Fuja):
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inst_Fuja_play
-	cmp al, 13 ;enter
-	je Fuja
-	jmp waitA3
-waitA4:
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inicio
-	cmp al, 13 ;enter
-	je Fuja
-	jmp waitA3
-waitA5: ;espera por uma tecla na tela de instrução do jogo Fuja:
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inst_Fuja_pause
-	jmp waitA5
-end_game:
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inicio
-	cmp al, 13 ;enter
-	je Fuja
-	jmp end_game
-waitB1: ;espera por uma tecla na tela inicial (BrickBreaker):
-	mov ah, 0
-	int 16h
-	cmp al, 110 ;Letra n
-	je Print_fuja
-	cmp al, 13 ;enter
-	je Inst_BrickBreaker
-	cmp al, 27 ;esc
-	je end
-	jmp waitB1
-waitB2: ;espera por uma tecla na tela de instrução do jogo BrickBreaker:
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inicio
-	cmp al, 13 ;enter
-	je BrickBreaker ;Início do jogo
-	jmp waitB2
-waitB3: ;espera por uma tecla na tela do jogo BrickBreaker (ESC => voltar para o menu de instruções do brickbreaker):
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inst_BrickBreaker
-	jmp waitB3
-waitCredits: ;espera por uma tecla na tela de créditos (ESC => voltar para o menu incial):
-	mov ah, 0
-	int 16h
-	cmp al, 27 ;esc
-	je Inicio
-	jmp waitCredits
-printScore: ;exibir a pontuação da partida:
+printScore: ;imprimir string "SCORE"
 	mov ah, 0x13 ;Printar string
 	mov al, 1 ;tipo de escrita
 	mov bl, 15 ;cor
@@ -430,7 +322,7 @@ printScore: ;exibir a pontuação da partida:
 	mov bp, score
 	int 10h
 	ret
-Score: ;atualizar a pontuação da partida:
+Score: ;imprimir pontuação
 	mov ah, 2
 	mov dh, 2
 	mov dl, 22
@@ -475,7 +367,7 @@ Score: ;atualizar a pontuação da partida:
 		int 10h
 		mov bl, 0
 		ret
-update_score:
+update_score: ;atualizar a pontuação
 	mov si, num_score
 	mov di, num_score
 	lodsw
@@ -490,27 +382,26 @@ update_score:
 	stosw
 	call Score
 	jmp verifica_pulo
-vel_max: ;não deixa passar da velocidade máxima
-	stosw
-	call Score
-	jmp verifica_pulo
-sobe:
-	mov di, estagio_pulo
-	mov al, 1
-	stosb
-	jmp verifica_pulo
-desce:
-	mov di, estagio_pulo
-	mov al, 2
-	stosb
-	jmp walk
-para_pulo:
-	mov di, estagio_pulo
-	mov al, 0
-	stosb
-	call estudante
-	jmp walk
-ruy:
+draw_street: ;desenha a rua
+	mov dx, 146
+	loopStreet1:
+		cmp dx, 200;53 linhas
+		je fim_loopStreet1
+		mov cx, 0
+		loopStreet2:
+			cmp cx, 320;320 colunas
+			je fim_loopStreet2
+			mov al, 8
+			mov ah, 0xc
+			int 10h
+			inc cx
+			jmp loopStreet2
+		fim_loopStreet2:
+			inc dx
+			jmp loopStreet1
+	fim_loopStreet1:
+		ret
+ruy: ;Printa ruy
 	mov si, Ruy_img
 	mov dx, 125
 	loop1Ruy:
@@ -518,7 +409,7 @@ ruy:
 		je fim_loop1Ruy
 		mov cx, 290
 		loop2Ruy:
-			cmp cx, 306 ;16 colunas
+			cmp cx, 307 ;17 colunas
 			je fim_loop2Ruy
 			lodsb ; al = 0/
 			mov ah, 0xc
@@ -531,7 +422,7 @@ ruy:
 	fim_loop1Ruy:
 		mov ax, 290
 		ret
-mov_ruy:
+mov_ruy: ;Movimenta ruy
 	mov si, Ruy_img
 	mov dx, 125
 	loop1_mov_Ruy:
@@ -540,14 +431,14 @@ mov_ruy:
 		lodsw 
 		pop si
 		mov cx, ax
-		sub cx, 5
+		sub cx, 6
 		push cx
 		cmp dx, 146 ;21 linhas
 		je fim_loop1_mov_Ruy
 		loop2mov_Ruy:
 			pop ax
 			push ax
-			add ax, 16 ;16 colunas
+			add ax, 17 ;17 colunas
 			cmp cx, ax
 			je fim_loop2mov_Ruy
 			lodsb ; al = 0/
@@ -573,12 +464,12 @@ mov_ruy:
 		pop ax
 		mov di, ruy_x
 		stosw
-		cmp ax, 0
+		cmp ax, 2
 		je new_ruy
-		cmp ax, 35
+		cmp ax, 32
 		je update_score
 		jmp verifica_pulo
-vanish_ruy:
+vanish_ruy: ;Desaparece ruy
 	mov dx, 125
 	loop1vanish_ruy:
 		cmp dx, 146 ;21 linhas
@@ -597,7 +488,7 @@ vanish_ruy:
 			jmp loop1vanish_ruy
 	fim_loop1vanish_ruy:
 		ret
-estudante:
+estudante: ;Printa estudante
 	mov si, Estudante_img
 	mov dx, 119
 	loopEstudante1:
@@ -620,7 +511,7 @@ estudante:
 		mov ax, 119
 		stosw
 		ret
-estudante_sobe:
+estudante_sobe: ;Movimenta estudante para cima
 	mov si, estudante_y
 	mov di, estudante_y
 	lodsw
@@ -652,7 +543,7 @@ estudante_sobe:
 		cmp ax, 80
 		je desce
 		jmp walk
-estudante_desce:
+estudante_desce: ;Movimenta estudante para baixo
 	mov si, estudante_y
 	mov di, estudante_y
 	lodsw
@@ -684,26 +575,27 @@ estudante_desce:
 		cmp ax, 116
 		je para_pulo
 		jmp walk
-draw_street:
-	mov dx, 146
-	loopStreet1:
-		cmp dx, 200;53 linhas
-		je fim_loopStreet1
-		mov cx, 0
-		loopStreet2:
-			cmp cx, 320;320 colunas
-			je fim_loopStreet2
-			mov al, 8
-			mov ah, 0xc
-			int 10h
-			inc cx
-			jmp loopStreet2
-		fim_loopStreet2:
-			inc dx
-			jmp loopStreet1
-	fim_loopStreet1:
-		ret
-delay_fuja:
+vel_max: ;não deixa passar da velocidade máxima
+	stosw
+	call Score
+	jmp verifica_pulo
+sobe: ;Estudante começa a subir
+	mov di, estagio_pulo
+	mov al, 1
+	stosb
+	jmp estudante_sobe
+desce: ;Estudante começa a descer
+	mov di, estagio_pulo
+	mov al, 2
+	stosb
+	jmp walk
+para_pulo: ;Estudante para de pular
+	mov di, estagio_pulo
+	mov al, 0
+	stosb
+	call estudante
+	jmp walk
+delay_fuja: ;velocidade do jogo
 	mov si, speed_fuja
 	lodsw
 	mov dx, ax
@@ -711,6 +603,99 @@ delay_fuja:
 	mov cx, 0
 	int 15h
 	ret
+BrickBreaker: ;jogo BrickBreaker:
+	call video
+	call printScore
+	call Score
+	jmp waitB3
+waitA1: ;espera por uma tecla na tela inicial (Fuja):
+	mov ah, 0
+	int 16h
+	cmp al, 110 ;Letra n
+	je Print_BrickBreaker
+	cmp al, 13 ;enter
+	je Inst_Fuja
+	cmp al, 99;letra c
+	je Creditos
+	cmp al, 27 ;esc
+	je end
+	jmp waitA1
+waitA2: ;espera por uma tecla na tela de instrução do jogo Fuja:
+	mov ah, 0
+	int 16h
+	cmp al, 27 ;esc
+	je Inicio
+	cmp al, 13 ;enter
+	je Fuja_espera ;Início do jogo
+	jmp waitA2
+waitA3: ;espera por uma tecla na tela inicial do jogo Fuja (ESC => voltar para o menu de instruções do Fuja):
+	mov ah, 0
+	int 16h
+	cmp al, 27 ;esc
+	je Inst_Fuja
+	cmp al, 13 ;enter
+	je Fuja
+	jmp waitA3
+waitB1: ;espera por uma tecla na tela inicial (BrickBreaker):
+	mov ah, 0
+	int 16h
+	cmp al, 110 ;Letra n
+	je Print_fuja
+	cmp al, 13 ;enter
+	je Inst_BrickBreaker
+	cmp al, 27 ;esc
+	je end
+	jmp waitB1
+waitB2: ;espera por uma tecla na tela de instrução do jogo BrickBreaker:
+	mov ah, 0
+	int 16h
+	cmp al, 27 ;esc
+	je Inicio
+	cmp al, 13 ;enter
+	je BrickBreaker ;Início do jogo
+	jmp waitB2
+waitB3: ;espera por uma tecla na tela inicial do jogo BrickBreaker (ESC => voltar para o menu de instruções do brickbreaker):
+	mov ah, 0
+	int 16h
+	cmp al, 27 ;esc
+	je Inst_BrickBreaker
+	jmp waitB3
+waitCredits: ;espera por uma tecla na tela de créditos (ESC => voltar para o menu incial):
+	mov ah, 0
+	int 16h
+	cmp al, 27 ;esc
+	je Inicio
+	jmp waitCredits
+end_game:
+	mov ah, 0x13 ;Printar string
+	mov al, 1 ;tipo de escrita
+	mov bl, 4 ;cor
+	mov dh, 4 ;linha
+	mov dl, 16 ;coluna
+	mov cx, 9 ;numero de caracteres
+	mov bp, game_over
+	int 10h
+	mov bl, 4
+	mov dh, 8
+	mov dl, 2
+	mov cx, 36
+	mov bp, retry
+	int 10h
+	mov bl, 4
+	mov dh, 10
+	mov dl, 8
+	mov cx, 23
+	mov bp, exit
+	int 10h
+	jmp wait_end
+wait_end: ;espera tecla no end_game
+	mov ah, 0
+	int 16h
+	cmp al, 27 ;esc
+	je Inicio
+	cmp al, 13 ;enter
+	je Fuja
+	jmp waitA4
 end: ;fim do programa:
 	call video
 	jmp $
