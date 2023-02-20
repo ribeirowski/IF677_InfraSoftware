@@ -695,7 +695,7 @@ wait_end: ;espera tecla no end_game
 	je Inicio
 	cmp al, 13 ;enter
 	je Fuja
-	jmp waitA4
+	jmp wait_end
 end: ;fim do programa:
 	call video
 	jmp $
