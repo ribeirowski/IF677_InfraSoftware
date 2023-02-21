@@ -46,15 +46,6 @@ data: ;armazena os dados do programa:
 		estagio_pulo db 0 ;Estágio do pulo: 0 = não ta pulando, 1 = subindo, 2 = descendo
 		num_score dw 0 ;numero do score
 		speed_fuja dw 0 ;velocidade do jogo
-main: ;funcao principal do programa
-;zerar registradores
-	xor ax, ax
-	mov bx, ax
-	mov cx, ax
-	mov dx, ax
-	mov ds, ax
-	mov es, ax
-	mov bp, ax
 video: ;ativar modo grafico:
 	mov ah, 0
 	mov al, 0xd
@@ -92,6 +83,15 @@ Inst_jogos: ;Instruções comuns entre os jogos:
 	mov bp, back
 	int 10h
 	ret
+main: ;funcao principal do programa
+;zerar registradores
+	xor ax, ax
+	mov bx, ax
+	mov cx, ax
+	mov dx, ax
+	mov ds, ax
+	mov es, ax
+	mov bp, ax
 Inicio: ;Menu geral
 	call video
 	mov ah, 0x13 ;Printar string
