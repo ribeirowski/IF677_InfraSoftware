@@ -84,6 +84,8 @@ jmp main
 		mov ds, ax
 		mov es, ax
 		mov bp, ax
+		xor ax,ax
+		in al,0x64
 		Inicio: ;Menu geral
 			call video
 			mov ah, 0x13 ;Printar string
@@ -327,12 +329,8 @@ jmp main
 			je estudante_sobe
 			cmp al, 2
 			je estudante_desce
-			mov ah, 1
-			int 16h
-			je walk
-			mov ah, 0
-			int 16h
-			cmp al, 32
+			in al, 0x60
+			cmp al, 57 ;Key SPACE
 			je sobe
 			jmp walk
 	printScore_fuja: ;imprimir string "SCORE"
@@ -780,15 +778,13 @@ jmp main
 		Red_move:
 			call barreira
 			call delay_pong
-			mov ah, 1
-			int 16h
-			je ball_move_x
-			mov ah, 0
-			int 16h
-			cmp al, 119
+			in al, 0x60
+			cmp al, 17 ;Key W
 			je Red_sobe
-			cmp al, 115
+			cmp al, 31 ;Key S
 			je Red_desce
+		Blue_move:
+			jmp ai
 		ball_move_x:
 			mov si, ball_x_direction
 			lodsb
@@ -803,14 +799,12 @@ jmp main
 			je ball_up
 			cmp al, 1
 			je ball_down
-		Blue_move:
-			jmp ai
 
 	ai:
 		mov si, ball_x
 		lodsw
-		cmp ax, 184
-		jbe Red_move
+		cmp ax, 190
+		jbe ball_move_x
 		mov si, ball_y
 		lodsw
 		mov cx, ax
@@ -821,7 +815,7 @@ jmp main
 		add ax, 32
 		cmp cx, ax
 		ja Blue_desce
-		jmp Red_move
+		jmp ball_move_x
 	Red_sobe:
 		mov si, PlataformaR_y
 		lodsw
@@ -840,7 +834,7 @@ jmp main
 			je fim_loopRed_sobe1
 			mov cx, 16
 			loopRed_sobe2:
-				cmp cx, 25 ;9 colunas
+				cmp cx, 22 ;6 colunas
 				je fim_loopRed_sobe2
 				mov al, 4
 				mov ah, 0xc
@@ -875,7 +869,7 @@ jmp main
 					jmp loopRed_sobe3
 			fim_loopRed_sobe3:
 					pop ax
-					jmp ball_move_x
+					jmp Blue_move
 
 	Red_desce:
 		mov si, PlataformaR_y
@@ -895,7 +889,7 @@ jmp main
 			je fim_loopRed_desce1
 			mov cx, 16
 			loopRed_desce2:
-				cmp cx, 25 ;9 colunas
+				cmp cx, 22 ;6 colunas
 				je fim_loopRed_desce2
 				mov al, 4
 				mov ah, 0xc
@@ -932,7 +926,7 @@ jmp main
 					jmp loopRed_desce3
 			fim_loopRed_desce3:
 					pop ax
-					jmp ball_move_x
+					jmp Blue_move
 
 	Blue_sobe:
 		mov si, PlataformaB_y
@@ -950,9 +944,9 @@ jmp main
 			add ax, 32
 			cmp dx, ax ;32 linhas
 			je fim_loopBlue_sobe1
-			mov cx, 295
+			mov cx, 298
 			loopBlue_sobe2:
-				cmp cx, 304 ;9 colunas
+				cmp cx, 304 ;6 colunas
 				je fim_loopBlue_sobe2
 				mov al, 9
 				mov ah, 0xc
@@ -987,7 +981,7 @@ jmp main
 					jmp loopBlue_sobe3
 			fim_loopBlue_sobe3:
 					pop ax
-					jmp Red_move
+					jmp ball_move_x
 
 	Blue_desce:
 		mov si, PlataformaB_y
@@ -1005,9 +999,9 @@ jmp main
 			add ax, 32
 			cmp dx, ax ;32 linhas
 			je fim_loopBlue_desce1
-			mov cx, 295
+			mov cx, 298
 			loopBlue_desce2:
-				cmp cx, 304 ;9 colunas
+				cmp cx, 304 ;6 colunas
 				je fim_loopBlue_desce2
 				mov al, 9
 				mov ah, 0xc
@@ -1044,7 +1038,7 @@ jmp main
 					jmp loopBlue_desce3
 			fim_loopBlue_desce3:
 					pop ax
-					jmp Red_move
+					jmp ball_move_x
 
 	ball_left:
 		mov si, ball_y
@@ -1252,6 +1246,8 @@ jmp main
 				je vira_baixo
 				cmp al, 4
 				je vira_baixo
+				cmp al, 9
+				je vira_baixo
 				pop dx
 				inc dx
 				jmp loop1_ball_up
@@ -1291,7 +1287,7 @@ jmp main
 					jmp loop3_ball_up
 			fim_loop3_ball_up:
 					pop ax
-					jmp Blue_move
+					jmp Red_move
 	ball_down:
 		mov si, ball_y
 		lodsw
@@ -1329,6 +1325,8 @@ jmp main
 				mov ah, 0xd
 				int 10h
 				cmp al, 10
+				je vira_cima
+				cmp al, 4
 				je vira_cima
 				cmp al, 9
 				je vira_cima
@@ -1371,7 +1369,7 @@ jmp main
 					jmp loop3_ball_down
 			fim_loop3_ball_down:
 					pop ax
-					jmp Blue_move
+					jmp Red_move
 
 	vira_direita:
 		mov di, ball_x_direction
@@ -1457,7 +1455,7 @@ jmp main
 			je fim_loopRed_pong1
 			mov cx, 16
 			loopRed_pong2:
-				cmp cx, 25 ;9 colunas
+				cmp cx, 22 ;6 colunas
 				je fim_loopRed_pong2
 				mov al, 4
 				mov ah, 0xc
@@ -1474,9 +1472,9 @@ jmp main
 		loopBlue_pong1:
 			cmp dx, 129 ; 32 linhas
 			je fim_loopBlue_pong1
-			mov cx, 295
+			mov cx, 298
 			loopBlue_pong2:
-				cmp cx, 304 ;9 colunas
+				cmp cx, 304 ;6 colunas
 				je fim_loopBlue_pong2
 				mov al, 9
 				mov ah, 0xc
@@ -1610,10 +1608,10 @@ jmp main
 		mov ah, 0xe
 		mov bl, 1
 		int 10h
-		mov bl, 0	
+		mov bl, 0
 		ret
 	delay_pong:
-		mov dx, 10000
+		mov dx, 750
 		mov ah, 86h
 		mov cx, 0
 		int 15h
@@ -1804,4 +1802,4 @@ jmp main
 	end: ;fim do programa:
 		call video
 		jmp $
-;1720 linhas
+;1805 linhas
