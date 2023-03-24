@@ -17,7 +17,7 @@ void *ToGray(void *arg) {
 }
 
 int main(void) {
-
+  
   FILE *in;
   in = fopen("entrada.txt", "r+");
   if (in == NULL) {
@@ -41,8 +41,7 @@ int main(void) {
 
   for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
-      fscanf(in, "%d %d %d ", &matriz[i][j].R, &matriz[i][j].G,
-             &matriz[i][j].B);
+      fscanf(in, "%d %d %d ", &matriz[i][j].R, &matriz[i][j].G, &matriz[i][j].B);
       pthread_create(&(threads[i + j]), NULL, ToGray, (void*) &(matriz[i][j]));
     }
   }
@@ -50,8 +49,7 @@ int main(void) {
   FILE *out = fopen("saida.txt", "w+");
   for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
-      fprintf(out, "%d %d %d\n", matriz[i][j].R, matriz[i][j].G,
-              matriz[i][j].B);
+      fprintf(out, "%d %d %d\n", matriz[i][j].R, matriz[i][j].G, matriz[i][j].B);
     }
   }
 
