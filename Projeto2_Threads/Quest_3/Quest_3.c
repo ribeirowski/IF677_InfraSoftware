@@ -2,12 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
+typedef struct{
   int R, G, B;
-} pixel, *ptr_pixel;
+} pixel;
 
 void *ToGray(void *arg) {
-  ptr_pixel px = (ptr_pixel)arg;
+  pixel *px = (pixel*) arg;
   int C = (px->R * 0.30) + (px->G * 0.59) + (px->B * 0.11);
   px->R = C;
   px->G = C;
@@ -43,7 +43,7 @@ int main(void) {
     for (int j = 0; j < width; j++) {
       fscanf(in, "%d %d %d ", &matriz[i][j].R, &matriz[i][j].G,
              &matriz[i][j].B);
-      pthread_create(&(threads[i + j]), NULL, ToGray, &(matriz[i][j]));
+      pthread_create(&(threads[i + j]), NULL, ToGray, (void*) &(matriz[i][j]));
     }
   }
 
@@ -54,7 +54,7 @@ int main(void) {
               matriz[i][j].B);
     }
   }
-  
+
   fclose(in);
   fclose(out);
   return 0;
