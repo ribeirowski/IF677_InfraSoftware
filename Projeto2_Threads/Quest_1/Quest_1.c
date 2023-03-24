@@ -14,9 +14,9 @@ void *Cont(void *Id){
             }
         }
         num++;
-        printf("Thread %d: %d\n", id, num);
+        printf("Thread %d: %d\n", id, num); //Printa a thread e o contador
         if(num == 1000000){    //Se a thread atual chegou em num = 1000000, acaba  tudo
-            printf("Thread %d chegou em %d\n", id, num);
+            printf("Thread %d chegou em %d\n", id, num); //Printa a thread que chegou no resultado
             pthread_exit(NULL);  //Fecha a thread sem dar o unlock para que threads futuras continuem sem poder incrementar o "num"
         }
         pthread_mutex_unlock(&mutex);
@@ -27,7 +27,7 @@ void *Cont(void *Id){
 int main(){
     pthread_t Contador[NUM];
     int Id[NUM];
-    for (int a = 0; a < NUM; a++){
+    for (int a = 0; a < NUM; a++){ //Cria as threads
         Id[a] = a;
         pthread_create(&Contador[a], NULL, Cont, (void*)&Id[a]);
     }
