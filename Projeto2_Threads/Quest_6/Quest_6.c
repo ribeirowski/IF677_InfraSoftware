@@ -46,7 +46,12 @@ void Delete_Buffer(Buffer *B){ //Deleta a função do buffer
 }
 
 int agendarExecucao(Buffer *B, int (*function)(int), Parameters P){
-    
+    if(B->Tam < B->TamMax){ //insere a função a ser executada no buffer de execução, se o buffer não estiver cheio
+        Insert_Buffer(B, function, P);
+        return ID; //retorna o id sequencial 
+    }
+    else
+        return -1;
 }
 
 int main(){
@@ -57,4 +62,33 @@ int main(){
     B.Head->next = NULL;
     B.Tam = 0;
     
+    int exit = 0;
+    while (!exit){
+        int op, retorno;
+        Parameters operandos;
+        printf("\nQual operacao?\n\n");
+        printf("1 - \n 2- \n 3 - \n 4 - exit\n> ");
+        scanf("%d", &op);
+        switch(op){
+            case 1 :  printf("Defina os valores: ");
+                      scanf(" %d %d", &operandos.A, &operandos.B); 
+                      retorno = agendarExecucao(B, function1, operandos);
+                      break;
+            case 2 :  printf("Defina os valores: ");
+                      scanf(" %d %d", &operandos.A, &operandos.B); 
+                      retorno = agendarExecucao(B, function2, operandos);
+                      break;
+            case 3 :  printf("Defina os valores: ");
+                      scanf(" %d %d", &operandos.A, &operandos.B); 
+                      retorno = agendarExecucao(B, function3, operandos);
+                      break;
+            case 4 : exit = 1; break;
+            default: printf("operacao nao listada"); break;
+        }
+        if(retorno == -1){
+          printf("Buffer cheio\n");
+        }else{
+          printf("Operation ID = %d\n", retorno);
+        }
+    }
 }
