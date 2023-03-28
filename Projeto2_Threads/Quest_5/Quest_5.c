@@ -98,11 +98,9 @@ int main() {
     Q = newBlockingQueue(B); // cria uma fila bloqueante
     pthread_t producers[P];  // cria um vetor de threads para os produtores
     pthread_t consumers[C];  // cria um vetor de threads para os consumidores
-
     int *idsProducer[P]; // vetor de ids dos produtores
     int *idsConsumer[C]; // vetor de ids dos consumidores
     int i;
-
     for (i = 0; i < P; i++) {
         idsProducer[i] = (int *)malloc(sizeof(int)); // aloca memória para os ids dos produtores
         *idsProducer[i] = i; // define a id do produtor como o valor de i 
@@ -114,12 +112,11 @@ int main() {
         pthread_create(&consumers[i], NULL, consumer, (void *)idsConsumer[i]); // cria as threads dos consumidores
     }
     for (i = 0; i < P; i++) {
-        pthread_join(producers[i], NULL); // 
+        pthread_join(producers[i], NULL); // aguarda finalização do thread produtor i
     }
     for (i = 0; i < C; i++) {
-        pthread_join(consumers[i], NULL); // 
+        pthread_join(consumers[i], NULL); // aguarda finalização do thread consumidor i
     }
-
     free(Q);
     return 0;
 }
