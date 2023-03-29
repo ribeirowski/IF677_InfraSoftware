@@ -62,7 +62,7 @@ int main(void) {
      pthread_join(threads[i], NULL);
   }
 
-  FILE *out = fopen("caracol.ppm", "w+");
+  FILE *out = fopen("flowers_gray.ppm", "w+");
   if(out == NULL){
     printf("erro na criacao do arquivo de saida");
     exit(-1);
