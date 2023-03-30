@@ -82,7 +82,11 @@ void Insert_Result(int R, int Id){ //Insere o reusltado na fila de resultados
     Result.Tail = new;
     pthread_cond_signal(&ready);
 }
+<<<<<<< HEAD
 
+=======
+                                      
+>>>>>>> c5e97126f2387c0947a44b24273da7add2ef0857
 Res Delete_Result(Res *Cur){ //Deleta um resultado da fila de resultados
     Res Ret, *Del;
     Del = Cur->next;
@@ -96,6 +100,7 @@ Res Delete_Result(Res *Cur){ //Deleta um resultado da fila de resultados
 }
 
 void *mmc(void *P){
+<<<<<<< HEAD
     int resto, a, b;
     List num = *(List *)P; 
     pthread_mutex_unlock(&mutex3);
@@ -111,6 +116,23 @@ void *mmc(void *P){
     Exe[num.P.Thread_id] = false;
     pthread_mutex_unlock(&mutex3);
     pthread_exit(NULL);
+=======
+  int resto, a, b;
+  List num = *(List *)P; 
+  pthread_mutex_unlock(&mutex3);
+      a = num.P.A;
+      b = num.P.B;
+      do {
+          resto = a % b;
+          a = b;
+          b = resto;
+      } while (resto != 0);
+      pthread_mutex_lock(&mutex3);
+      Insert_Result((num.P.A * num.P.B) / a, num.ID);
+      Exe[num.P.Thread_id] = false;
+      pthread_mutex_unlock(&mutex3);
+      pthread_exit(NULL);
+>>>>>>> c5e97126f2387c0947a44b24273da7add2ef0857
 }
 
 void *mdc(void *P){
@@ -196,13 +218,19 @@ int main() {
     //Agendar as funções
     FILE * input = fopen("entrada.txt", "r+");
     if(input == NULL){
+<<<<<<< HEAD
         printf("falha ao abrir o arquivo de entrada");
             exit(-1);
+=======
+      printf("falha ao abrir o arquivo de entrada");
+      exit(-1);
+>>>>>>> c5e97126f2387c0947a44b24273da7add2ef0857
     }
 
     char op[4];
 
     do {
+<<<<<<< HEAD
     int id;
     fscanf(input," %s", op);
     if(strcmp(op, "REQ") == 0){
@@ -215,8 +243,26 @@ int main() {
         fscanf(input, " %d %d", &P.A, &P.B);
         printf("%s %d %d ID: %d\n",op, P.A, P.B, agendarExecucao(mdc, P));
     }
+=======
+      int id;
+      fscanf(input," %s", op);
+      if(strcmp(op, "REQ") == 0){
+        fscanf(input, " %d", &id);
+        printf("Resultado %d = %d\n", id, pegarResultadoExecucao(id));
+      }else if(strcmp(op, "MMC") == 0){
+        fscanf(input, " %d %d", &P.A, &P.B);
+        printf("%s %d %d ID: %d\n",op, P.A, P.B, agendarExecucao(mmc, P));
+      }else if(strcmp(op, "MDC") == 0){
+        fscanf(input, " %d %d", &P.A, &P.B);
+        printf("%s %d %d ID: %d\n",op, P.A, P.B, agendarExecucao(mdc, P));
+      }
+>>>>>>> c5e97126f2387c0947a44b24273da7add2ef0857
     }while(strcmp(op, "END") != 0);
     fclose(input);
     pthread_exit(NULL);
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c5e97126f2387c0947a44b24273da7add2ef0857
