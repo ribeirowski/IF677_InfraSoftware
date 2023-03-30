@@ -49,7 +49,6 @@ void Insert_Buffer(
     New->next = B.Tail->next;
     B.Tail->next = New;
     B.Tail = New;
-    // printf("ENTROUUUUUUUUU %d\n", ID);
     (B.Tam)++;
     ID++;
     R = (Result *)realloc(R, sizeof(Result) * ID);
@@ -137,7 +136,6 @@ void *Handler() {
                 if (Exe[a] == false) {
                     Exe[a] = true;
                     Task.P.Thread_id = a;
-                    // printf("entrei na thread de %d\n", a);
                     pthread_create(&Thread[a], NULL, Task.function, (void *)&Task);
                     Escolha = true;
                 }
@@ -188,6 +186,5 @@ int main() {
         }
     } while (strcmp(op, "END") != 0);
     fclose(input);
-    //printf("CABO\n");
     return 0;
 }
