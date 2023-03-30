@@ -82,7 +82,7 @@ int main(void) {
   
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        //pega o valor atualizado pelas threads e envia escreve no arquivo
+        //pega o valor atualizado pelas threads e escreve no arquivo
         fprintf(out, "%d %d %d\n", matriz[i][j].R, matriz[i][j].G, matriz[i][j].B); 
       }
     }
